@@ -1,6 +1,6 @@
 var template={
   html:
-  function (title, list, description,queryData){
+  function (title, list, description){
     return `
     <!DOCTYPE html>
     <html>
@@ -18,7 +18,7 @@ var template={
       <h1><a href="/">${title}</a></h1>
     ${list}
     <a href='/create'> 글 쓰기 </a>
-    <a href='/update?id=${title}'> 글 수정 </a>
+    <a href='/update/${title}'> 글 수정 </a>
     <form action="/delete_page" method = "post" onsubmit="return del_alert()">
     <input type = "hidden" name="id" value="${title}">
     <input type = "submit" value="delete">
@@ -68,7 +68,7 @@ var template={
   function (filelist) {
     var list= '<ol>';
     for(var i=0;i<filelist.length;i++){
-      list=list+`<li><a href ="/?id=${filelist[i]}">${filelist[i]}</a></li>`
+      list=list+`<li><a href ="/page/${filelist[i]}">${filelist[i]}</a></li>`
     }
     list= list+'</ol>';
     return list;
